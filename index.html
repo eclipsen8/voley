@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Команда «Вольный удар» — волейбольное аниме</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400&family=Jim+Nightshade&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #210f04;
+        --surface: #452103;
+        --surface-alt: #690500;
+        --primary: #bb6b00;
+        --primary-dark: #934b00;
+        --accent: #690500;
+        --text: #dfc098;
+        --muted: #b89568;
+        --border: #690500;
+        --shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+        --font-title: "Jim Nightshade", Arial, sans-serif;
+        --font-body: "Almendra", Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--text);
+        background-color: var(--bg);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      /* Шапка */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: rgba(33, 15, 4, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-title);
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+        color: var(--text);
+      }
+
+      .logo__mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: grid;
+        place-items: center;
+        color: var(--bg);
+        font-family: var(--font-body);
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
+
+      .nav {
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .nav a {
+        padding: 0.5rem 0.85rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        color: var(--text);
+        transition: color 0.2s, background-color 0.2s;
+      }
+
+      .nav a:hover {
+        color: var(--bg);
+        background-color: var(--text);
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        padding: 3rem 1rem 2rem;
+      }
+
+      .hero__title {
+        font-family: var(--font-title);
+        font-size: 2.6rem;
+        line-height: 1.1;
+        margin-bottom: 0.85rem;
+        color: var(--text);
+      }
+
+      .hero__title span {
+        color: var(--text);
+      }
+
+      .hero__subtitle {
+        color: var(--muted);
+        font-size: 1.1rem;
+        max-width: 580px;
+        margin: 0 auto 1.5rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 1.7rem;
+        border-radius: 10px;
+        font-family: var(--font-body);
+        font-weight: bold;
+        font-size: 1.05rem;
+        background-color: var(--text);
+        color: var(--bg);
+        box-shadow: var(--shadow);
+        transition: transform 0.15s, background-color 0.2s;
+      }
+
+      .btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .hero__image {
+        margin: 2rem auto 0;
+        max-width: 900px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        aspect-ratio: 16 / 7;
+        background-color: var(--surface);
+        border: 1px solid var(--border);
+      }
+
+      .hero__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Секции */
+      .section {
+        padding: 2.5rem 0;
+      }
+
+      .section__title {
+        font-family: var(--font-title);
+        font-size: 1.9rem;
+        margin-bottom: 1.5rem;
+        color: var(--text);
+        position: relative;
+        padding-left: 0.9rem;
+      }
+
+      .section__title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 70%;
+        border-radius: 3px;
+        background-color: var(--accent);
+      }
+
+      /* Карточки игроков */
+      .players {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        background-color: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: transform 0.2s, border-color 0.2s;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: var(--text);
+      }
+
+      .card__photo {
+        aspect-ratio: 1 / 1;
+        background-color: var(--bg);
+      }
+
+      .card__photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .card__body {
+        padding: 1rem 1.1rem 1.3rem;
+      }
+
+      .card__position {
+        display: inline-block;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text);
+        background-color: var(--accent);
+        padding: 0.25rem 0.6rem;
+        border-radius: 20px;
+        margin-bottom: 0.5rem;
+      }
+
+      .card__name {
+        font-family: var(--font-title);
+        font-size: 1.5rem;
+        margin-bottom: 0.35rem;
+        color: var(--text);
+      }
+
+      .card__desc {
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      /* Матчи */
+      .matches {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .match {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.1rem;
+        background-color: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        transition: border-color 0.2s;
+      }
+
+      .match:hover {
+        border-color: var(--text);
+      }
+
+      .match__teams {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+        font-size: 1rem;
+      }
+
+      .match__teams span:first-child {
+        font-weight: bold;
+        color: var(--text);
+      }
+
+      .match__score {
+        font-family: var(--font-title);
+        font-size: 1.6rem;
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      .match__date {
+        font-size: 0.9rem;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      /* Подвал */
+      .footer {
+        margin-top: 1rem;
+        padding: 2rem 1rem;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.95rem;
+        border-top: 1px solid var(--border);
+        background-color: var(--surface);
+      }
+
+      /* Адаптив */
+      @media (min-width: 600px) {
+        .hero__title {
+          font-size: 3.6rem;
+        }
+        .hero__subtitle {
+          font-size: 1.2rem;
+        }
+        .players {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .match {
+          flex-direction: row;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner">
+        <div class="logo">
+          <span class="logo__mark">ВУ</span>
+          <span>Вольный удар</span>
+        </div>
+        <nav class="nav">
+          <a href="#players">Игроки</a>
+          <a href="#matches">Матчи</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1 class="hero__title">Старшая Карасуно <span>烏野高校</span></h1>
+          <p class="hero__subtitle">
+            Старшая Карасуно(яп. 烏野高校 Karasuno Kōkō) — государственная старшая школа, находящаяся в Сендае, в префектуре Мияги. Волейбольный клуб учебного заведения был основан много лет назад. Его название, как и название самой школы, ассоциируется с воронами. По слухам, тренер Укай-старший держал диких ворон.
+          </p>
+          <a href="#players" class="btn">Познакомиться с командой</a>
+          <div class="hero__image">
+            <img src="karasuno.jpeg" alt="Команда в полном составе на площадке" />
+          </div>
+        </div>
+      </section>
+
+      <section id="players" class="section">
+        <div class="container">
+          <h2 class="section__title">Игроки</h2>
+          <div class="players">
+            <article class="card">
+              <div class="card__photo">
+                <img src="daichi.jpg" alt="Фото Дайчи Савамура" />
+              </div>
+              <div class="card__body">
+                <span class="card__position">Капитан</span>
+                <h3 class="card__name">Дайчи Савамура</h3>
+                <p class="card__desc">
+                  Берёт на себя обязанности капитана и тренера, пока внук Укая-старшего, Кейшин Укай, не встаёт на эту должность после длительных уговоров.
+                </p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__photo">
+                <img src="kageyama.jpeg" alt="Фото Тобио Кагеяма" />
+              </div>
+              <div class="card__body">
+                <span class="card__position">Связующий</span>
+                <h3 class="card__name">Тобио Кагеяма</h3>
+                <p class="card__desc">
+                  Кагеяма известен как «Король площадки» и волейбольный гений за свою невероятную технику и чувство игры. 
+                </p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__photo">
+                <img src="hinata.jpg" alt="Фото Шоё Хината" />
+              </div>
+              <div class="card__body">
+                <span class="card__position">Центральный блокирующий</span>
+                <h3 class="card__name">Шоё Хината</h3>
+                <p class="card__desc">
+                  Он не боится экспериментировать с новыми вещами и легко импровизирует, когда все идет не по плану. 
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="matches" class="section">
+        <div class="container">
+          <h2 class="section__title">Последние матчи</h2>
+          <div class="matches">
+            <div class="match">
+              <div class="match__teams">
+                <span>Вольный удар</span>
+                <span>«Чёрные ястребы»</span>
+              </div>
+              <div class="match__score">3 : 1</div>
+              <div class="match__date">12 июля</div>
+            </div>
+            <div class="match">
+              <div class="match__teams">
+                <span>Вольный удар</span>
+                <span>«Северные волки»</span>
+              </div>
+              <div class="match__score">2 : 3</div>
+              <div class="match__date">5 июля</div>
+            </div>
+            <div class="match">
+              <div class="match__teams">
+                <span>Вольный удар</span>
+                <span>«Жёлтые молнии»</span>
+              </div>
+              <div class="match__score">3 : 0</div>
+              <div class="match__date">28 июня</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        © 2026 Команда «Вольный удар». Сделано с любовью к волейболу.
+      </div>
+    </footer>
+  <!-- Осы жолды </body> тегінің алдына қос -->
+    <script src="script.js"></script>
+  </body>
+</html>
