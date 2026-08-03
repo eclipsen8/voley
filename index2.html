@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Официальная фан-страница волейбольного клуба старшей школы Карасуно: игроки, последние матчи и форма обратной связи для болельщиков." />
+    <meta name="description" content="Сайт о команде Карасуно из аниме 'Haikyuu!!'. Здесь вы найдете информацию о игроках, последних матчах и сможете оставить обратную связь." />
     <title>Команда «Карасуно» — волейбольное аниме</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -376,13 +376,13 @@
     </style>
   </head>
   <body>
-    <header class="header">
+    <header>
       <div class="header__inner">
         <div class="logo">
           <span class="logo__mark">К</span>
           <span>Карасуно</span>
         </div>
-        <nav class="nav">
+        <nav>
           <a href="#players">Игроки</a>
           <a href="#matches">Матчи</a>
         </nav>
@@ -390,7 +390,7 @@
     </header>
 
     <main>
-      <section class="hero">
+      <div class="hero">
         <div class="container">
           <h1 class="hero__title">Старшая Карасуно <span>烏野高校</span></h1>
           <p class="hero__subtitle">
@@ -401,7 +401,7 @@
             <img src="karasuno.jpeg" alt="Команда в полном составе на площадке" />
           </div>
         </div>
-      </section>
+      </div>
 
       <section id="players" class="section">
         <div class="container">
@@ -483,26 +483,30 @@
       <section id="feedback" class="section">
         <div class="container">
           <h2 class="section__title">Обратная связь</h2>
+          <!-- ЖИ жіберген нұсқа: 5 классикалық қате -->
           <form class="feedback-form" novalidate>
             <div class="form-row">
-              <label for="fb-name">Имя</label>
-              <input id="fb-name" name="name" type="text" required placeholder="Как к вам обращаться" />
+              <!-- 1 кате -->
+              <label for="name">Имя</label>
+              <input id="fb-name" type="text" placeholder="Как к вам обращаться" />
             </div>
             <div class="form-row">
-              <label for="fb-email">Электронная почта</label>
-              <input id="fb-email" name="email" type="email" required placeholder="you@example.com" />
+              <!-- Қате 3: type="email" емес, type="text" -->
+              <!-- Қате 4: name атрибуты жоқ -->
+              <input id="fb-email" type="email" name="email" required placeholder="you@example.com" />
             </div>
             <div class="form-row">
-              <label for="fb-team">Любимый игрок</label>
-              <select id="fb-team" name="favorite_player">
+              <select id="fb-team">
                 <option value="daichi">Дайчи Савамура</option>
                 <option value="kageyama">Тобио Кагеяма</option>
                 <option value="hinata">Шоё Хината</option>
               </select>
             </div>
             <div class="form-row">
-              <label for="fb-message">Сообщение</label>
-              <textarea id="fb-message" name="message" required placeholder="Напишите нам что-нибудь"></textarea>
+              <!-- Қате 2: required жоқ -->
+              <!-- Қате 5: label орнына тек placeholder -->
+               <label for="message">Ваше сообщение</label>
+              <textarea id="fb-message" required placeholder="Напишите нам что-нибудь"></textarea>
             </div>
             <button type="submit" class="btn">Отправить</button>
           </form>
